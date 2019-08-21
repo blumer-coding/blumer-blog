@@ -11,7 +11,7 @@
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <title>@yield('title', 'LaraBBS') - Blumer 蓝默空间</title>
+    <title>@yield('title', 'Blumer') - 蓝默空间</title>
 
     <script type='text/javascript'>
         window.Laravel = <?php echo json_encode([

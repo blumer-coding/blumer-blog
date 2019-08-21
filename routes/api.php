@@ -26,18 +26,18 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
  | Method:         GET
  | Description:    Gets all of the cafes in the application
 */
-    Route::get('/articles', 'API\ArticlesController@getArticles');
+    Route::get('/blogs', 'API\BlogsController@getBlogs');
 
     /*
      |-------------------------------------------------------------------------------
      | Get An Individual Cafe
      |-------------------------------------------------------------------------------
-     | URL:            /api/v1/articles/{id}
-     | Controller:     API\articlesController@getCafe
+     | URL:            /api/v1/blogs/{id}
+     | Controller:     API\blogsController@getCafe
      | Method:         GET
      | Description:    Gets an individual cafe
     */
-    Route::get('/articles/{id}', 'API\ArticlesController@getArticle');
+    Route::get('/blogs/{id}', 'API\BlogsController@getBlog');
 
     /*
      |-------------------------------------------------------
@@ -49,7 +49,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
      | Method:         POST
      | Description:    Adds a new cafe to the application
     */
-    Route::post('/articles', 'API\ArticlesController@postNewArticle');
+    Route::post('/blogs', 'API\BlogsController@postNewBlog');
 
 });
 

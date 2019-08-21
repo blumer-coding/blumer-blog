@@ -20,6 +20,6 @@ Route::get( '/auth/{social}', 'Web\AuthenticationController@getSocialRedirect' )
     ->middleware('guest');
 Route::get( '/auth/{social}/callback', 'Web\AuthenticationController@getSocialCallback' )
     ->middleware('guest');
-Route::get('/articles', 'API\ArticlesController@getArticles');
-Route::post('/articles', 'API\ArticlesController@postNewCafe');
-Route::get('/articles/{id}', 'API\ArticlesController@getArticle');
+Route::get('/blogs', 'API\BlogsController@getBlogs');
+Route::post('/blogs', 'API\BlogsController@postNewCafe');
+Route::get('/blogs/{id}', 'API\BlogsController@getBlog');

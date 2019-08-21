@@ -33,17 +33,22 @@ if (token) {
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import router from './routes.js'
-import store from './store.js'
+import router from './routes.js';
+import store from './store.js';
+import Home from "./pages/Home";
 
 Vue.use(ElementUI);
 
 
-new Vue({
+// new Vue({
+//     router,
+//     store,
+//     Home
+// }).$mount('#app')
+//
+const app = new Vue({
     router,
-    store
-}).$mount('#app')
-
-
-
+    store,
+    render: h => h(Home),
+}).$mount('#app');;
 

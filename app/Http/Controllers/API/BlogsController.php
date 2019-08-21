@@ -4,46 +4,46 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Article;
-class ArticlesController extends Controller
+use App\Models\Blog;
+class BlogsController extends Controller
 {
     /*
      |-------------------------------------------------------------------------------
-     | Get All Articles
+     | Get All Blogs
      |-------------------------------------------------------------------------------
-     | URL:            /api/v1/articles
+     | URL:            /api/v1/blogs
      | Method:         GET
-     | Description:    Gets all of the articles in the application
+     | Description:    Gets all of the blogs in the application
     */
-    public function getArticles(){
-        $articles = Article::all();
-        return response()->json($articles);
+    public function getBlogs(){
+        $blogs = Blog::all();
+        return response()->json($blogs);
     }
 
     /*
      |-------------------------------------------------------------------------------
-     | Get An Individual Article
+     | Get An Individual Blog
      |-------------------------------------------------------------------------------
-     | URL:            /api/v1/articles/{id}
+     | URL:            /api/v1/blogs/{id}
      | Method:         GET
-     | Description:    Gets an individual article
+     | Description:    Gets an individual blog
      | Parameters:
-     |   $id   -> ID of the article we are retrieving
+     |   $id   -> ID of the blog we are retrieving
     */
-    public function getArticle($id){
-        $article = Article::all();
-        return response()->json($article);
+    public function getBlog($id){
+        $blog = Blog::all();
+        return response()->json($blog);
     }
 
     /*
      |-------------------------------------------------------------------------------
-     | Adds a New Article
+     | Adds a New Blog
      |-------------------------------------------------------------------------------
-     | URL:            /api/v1/articles
+     | URL:            /api/v1/blogs
      | Method:         POST
-     | Description:    Adds a new article to the application
+     | Description:    Adds a new blog to the application
     */
-    public function postNewArticle(){
+    public function postNewBlog(){
 
     }
 }

@@ -2,7 +2,7 @@
  |-------------------------------------------------------------------------------
  | VUEX store.js
  |-------------------------------------------------------------------------------
- | Builds the data store from all of the modules for the Roast app.
+ | Builds the data store from all of the modules for the Blumer app.
  */
 
 /**
@@ -23,13 +23,13 @@ Vue.use( Vuex )
 /**
  * Imports all of the modules used in the application to build the data store.
  */
-import { articles } from './modules/articles.js'
+import { blogs } from './modules/blogs.js'
 
 /**
  * Export our data store.
  */
 export default new Vuex.Store({
     modules: {
-        articles
+        blogs
     }
 });

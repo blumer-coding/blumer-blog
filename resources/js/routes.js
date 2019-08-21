@@ -26,14 +26,14 @@ export default new VueRouter({
             component: Vue.component( 'Home', require( './pages/Home.vue' ) )
         },
         {
-            path: '/articles',
-            name: 'articles',
-            component: Vue.component( 'articles', require( './pages/articles.vue' ) )
+            path: '/blogs',
+            name: 'blogs',
+            component: Vue.component( 'blogs', require( './pages/blogs.vue' ) )
         },
         {
-            path: 'articles/:id',
-            name: 'article',
-            component: Vue.component( 'article', require( './pages/article.vue' ) )
+            path: 'blogs/:id',
+            name: 'blog',
+            component: Vue.component( 'blog', require( './pages/blog.vue' ) )
         }
     ]
 });
