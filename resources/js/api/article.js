@@ -7,7 +7,7 @@ export default {
     /**
      * GET /api/v1/articles
      */
-    getarticles: function(){
+    getArticles: function(){
         return axios.get( ROAST_CONFIG.API_URL + '/articles' );
     },
     /**
