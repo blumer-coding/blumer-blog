@@ -14,7 +14,9 @@
 <template>
     <div id="app-layout">
         <el-container>
-            <el-header>Header</el-header>
+            <el-header>
+                <navigation></navigation>
+            </el-header>
             <el-main>Main</el-main>
             <el-footer>Footer</el-footer>
         </el-container>
@@ -23,6 +25,7 @@
 </template>
 
 <script>
+    import Navigation from '../components/global/Navigation.vue';
     export default {
         data() {
             return {
@@ -35,5 +38,12 @@
                 console.log(key, keyPath);
             }
         },
+        components: {
+            Navigation
+        },
+        created(){
+            this.$store.dispatch( 'loadBlogs' );
+            this.$store.dispatch( 'loadUser' );
+        }
     }
 </script>
