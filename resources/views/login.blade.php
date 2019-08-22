@@ -9,5 +9,14 @@
 <a href="/auth/github">
     Log In With Github
 </a>
+<a href="/auth/qq">
+    Log In With QQ
+</a>
+<a href="/auth/wechat-web">
+    Log In With Wechat
+</a>
+<a href="/auth/weibo">
+    Log In With Weibo
+</a>
 </body>
 </html>

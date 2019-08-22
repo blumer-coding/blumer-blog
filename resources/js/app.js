@@ -35,20 +35,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './routes.js';
 import store from './store.js';
-import Home from "./pages/Home";
 
 Vue.use(ElementUI);
 
-
-// new Vue({
-//     router,
-//     store,
-//     Home
-// }).$mount('#app')
-//
 const app = new Vue({
-    router,
-    store,
-    render: h => h(Home),
-}).$mount('#app');;
+
+    router,store
+
+}).$mount('#app')
 

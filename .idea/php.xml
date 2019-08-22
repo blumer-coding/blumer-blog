@@ -100,6 +100,11 @@
       <path value="$PROJECT_DIR$/vendor/league/event" />
       <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
       <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/manager" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/weixin" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/qq" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/weibo" />
+      <path value="$PROJECT_DIR$/vendor/socialiteproviders/weixin-web" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

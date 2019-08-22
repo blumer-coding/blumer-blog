@@ -14,7 +14,7 @@ import VueRouter from 'vue-router'
 /**
  * Extends Vue to use Vue Router
  */
-Vue.use( VueRouter )
+Vue.use( VueRouter );
 /**
  * Makes a new VueRouter that we will use to run all of the routes for the app.
  */
@@ -22,18 +22,26 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Vue.component( 'Home', require( './pages/Home.vue' ) )
-        },
-        {
-            path: '/blogs',
-            name: 'blogs',
-            component: Vue.component( 'blogs', require( './pages/blogs.vue' ) )
-        },
-        {
-            path: 'blogs/:id',
-            name: 'blog',
-            component: Vue.component( 'blog', require( './pages/blog.vue' ) )
+            name: 'layout',
+            components: Vue.component( 'Home', require( './pages/Layout.vue')),
+            children: [
+                {
+                    path: 'home',
+                    name: 'home',
+                    components: Vue.component( 'Home', require( './pages/Home.vue'))
+                },
+                {
+                    path: 'blogs',
+                    name: 'blogs',
+                    components: Vue.component( 'Blogs', require( './pages/Blogs.vue' )),
+                },
+
+                {
+                    path: 'blogs/:id',
+                    name: 'blog',
+                    components: Vue.component( 'Blog', require( './pages/Blog.vue'))
+                }
+            ]
         }
     ]
 });

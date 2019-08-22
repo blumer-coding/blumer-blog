@@ -1,32 +1,30 @@
 /**
- * Imports the Roast API URL from the config.
+ * Imports the Blumer API URL from the config.
  */
-import { ROAST_CONFIG } from '../config.js';
+import { BLUMER_CONFIG } from '../config.js';
 
 export default {
     /**
      * GET /api/v1/blogs
      */
     getBlogs: function(){
-        return axios.get( ROAST_CONFIG.API_URL + '/blogs' );
+        return axios.get( BLUMER_CONFIG.API_URL + '/blogs' );
     },
     /**
      * GET /api/v1/blogs/{blogID}
      */
     getBlog: function( blogID ){
-        return axios.get( ROAST_CONFIG.API_URL + '/blogs/' + blogID );
+        return axios.get( BLUMER_CONFIG.API_URL + '/blogs/' + blogID );
     },
     /**
      * POST /api/v1/blogs
      */
-    postAddNewBlog: function( name, address, city, state, zip ){
-        return axios.post( ROAST_CONFIG.API_URL + '/blogs',
+    postAddNewBlog: function( slug, title, content ){
+        return axios.post( BLUMER_CONFIG.API_URL + '/blogs',
             {
-                name: name,
-                address: address,
-                city: city,
-                state: state,
-                zip: zip
+                slug: slug,
+                title: title,
+                content: content,
             }
         );
     }
