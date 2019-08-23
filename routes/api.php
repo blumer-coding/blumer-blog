@@ -13,19 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
+Route::group(['prefix' => 'v1'], function(){
+
     Route::get('/user', function( Request $request ){
         return $request->user();
     });
     /*
- |-------------------------------------------------------------------------------
- | Get All Cafes
- |-------------------------------------------------------------------------------
- | URL:            /api/v1/cafes
- | Controller:     API\CafesController@getCafes
- | Method:         GET
- | Description:    Gets all of the cafes in the application
-*/
+    |-------------------------------------------------------------------------------
+    | Get All Cafes
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/cafes
+    | Controller:     API\CafesController@getCafes
+    | Method:         GET
+    | Description:    Gets all of the cafes in the application
+    */
     Route::get('/blogs', 'API\BlogsController@getBlogs');
 
     /*
@@ -38,7 +39,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
      | Description:    Gets an individual cafe
     */
     Route::get('/blogs/{id}', 'API\BlogsController@getBlog');
-
+});
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     /*
      |-------------------------------------------------------
     +------------------------
