@@ -21,7 +21,7 @@
     <div class="bl-header">
         <h5 class="bl-logo el-menu-item "><a href="#">蓝默空间</a></h5>
         <el-menu :default-active="activeIndex" class="el-menu-blumer" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">首页</el-menu-item>
+            <el-menu-item index="1"><a href="/">首页</a></el-menu-item>
             <el-submenu index="2">
                 <template slot="title">分类</template>
                 <el-menu-item index="2-1">分享</el-menu-item>
@@ -29,8 +29,8 @@
                 <el-menu-item index="2-3">问答</el-menu-item>
                 <el-menu-item index="2-4">公告</el-menu-item>
             </el-submenu>
-            <el-menu-item index="3">登录</el-menu-item>
-            <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">注册</a></el-menu-item>
+            <el-menu-item index="3"><a href="/#/login">登录</a></el-menu-item>
+            <el-menu-item index="4">注册</el-menu-item>
         </el-menu>
     </div>
 </template>

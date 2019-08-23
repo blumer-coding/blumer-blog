@@ -8,7 +8,6 @@
         text-align: center;
         line-height: 160px;
     }
-
 </style>
 
 <template>
@@ -42,7 +41,6 @@
             Navigation
         },
         created(){
-            this.$store.dispatch( 'loadBlogs' );
             this.$store.dispatch( 'loadUser' );
         }
     }

@@ -14,29 +14,35 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'v1'], function(){
-
-    Route::get('/user', function( Request $request ){
-        return $request->user();
-    });
     /*
     |-------------------------------------------------------------------------------
-    | Get All Cafes
+    | Get User
     |-------------------------------------------------------------------------------
-    | URL:            /api/v1/cafes
-    | Controller:     API\CafesController@getCafes
+    | URL:            /api/v1/user/{id}
+    | Controller:     API\UsersController@getUser
     | Method:         GET
-    | Description:    Gets all of the cafes in the application
+    | Description:    Gets all of the user in the application
+    */
+    Route::get('/user/{id}', 'API\UsersController@getUser');
+    /*
+    |-------------------------------------------------------------------------------
+    | Get All Blogs
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/blogs
+    | Controller:     API\BlogsController@getBlogs
+    | Method:         GET
+    | Description:    Gets all of the blogs in the application
     */
     Route::get('/blogs', 'API\BlogsController@getBlogs');
 
     /*
      |-------------------------------------------------------------------------------
-     | Get An Individual Cafe
+     | Get An Individual Blog
      |-------------------------------------------------------------------------------
      | URL:            /api/v1/blogs/{id}
-     | Controller:     API\blogsController@getCafe
+     | Controller:     API\blogsController@getBlog
      | Method:         GET
-     | Description:    Gets an individual cafe
+     | Description:    Gets an individual blog
     */
     Route::get('/blogs/{id}', 'API\BlogsController@getBlog');
 });
@@ -44,15 +50,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     /*
      |-------------------------------------------------------
     +------------------------
-     | Adds a New Cafe
+     | Adds a New Blog
      |-------------------------------------------------------------------------------
-     | URL:            /api/v1/cafes
-     | Controller:     API\CafesController@postNewCafe
+     | URL:            /api/v1/blogs
+     | Controller:     API\BlogsController@postNewBlog
      | Method:         POST
-     | Description:    Adds a new cafe to the application
+     | Description:    Adds a new blog to the application
     */
     Route::post('/blogs', 'API\BlogsController@postNewBlog');
-
 });
 
 

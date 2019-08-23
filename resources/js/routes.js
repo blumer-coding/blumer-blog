@@ -22,13 +22,14 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
+            redirect: {name: 'index'},
             name: 'layout',
             components: Vue.component( 'Home', require( './pages/Layout.vue')),
             children: [
                 {
-                    path: 'home',
-                    name: 'home',
-                    components: Vue.component( 'Home', require( './pages/Home.vue'))
+                    path: 'index',
+                    name: 'index',
+                    components: Vue.component( 'Index', require( './pages/Index.vue'))
                 },
                 {
                     path: 'blogs',
@@ -40,6 +41,11 @@ export default new VueRouter({
                     path: 'blogs/:id',
                     name: 'blog',
                     components: Vue.component( 'Blog', require( './pages/Blog.vue'))
+                },
+                {
+                    path: 'login',
+                    name: 'login',
+                    components: Vue.component( 'Login', require( './pages/Login.vue'))
                 }
             ]
         }

@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'SocialiteProviders\Manager\SocialiteWasCalled' => [
             'SocialiteProviders\QQ\QqExtendSocialite@handle'
         ],
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\Weibo\WeiboExtendSocialite@handle',
+        ],
     ];
 
     /**

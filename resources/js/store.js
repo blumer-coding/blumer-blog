@@ -23,13 +23,14 @@ Vue.use( Vuex )
 /**
  * Imports all of the modules used in the application to build the data store.
  */
-import { blogs } from './modules/blogs.js'
-
+import { blogs } from './modules/blogs.js';
+import { users } from './modules/users.js';
 /**
  * Export our data store.
  */
 export default new Vuex.Store({
     modules: {
-        blogs
+         blogs
+        ,users
     }
 });
