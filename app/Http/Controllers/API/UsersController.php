@@ -11,4 +11,9 @@ class UsersController extends Controller
     public function getUser(){
         return Auth::guard('api')->user();
     }
+
+    public function register(Request $request)
+    {
+        return $request->all();
+    }
 }

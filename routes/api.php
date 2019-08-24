@@ -45,6 +45,16 @@ Route::group(['prefix' => 'v1'], function(){
      | Description:    Gets an individual blog
     */
     Route::get('/blogs/{id}', 'API\BlogsController@getBlog');
+    /*
+        |-------------------------------------------------------------------------------
+        | Register A New User
+        |-------------------------------------------------------------------------------
+        | URL:            /api/v1//user/add
+        | Controller:     API\UsersController@addUser
+        | Method:         POST
+        | Description:    Register a new user
+       */
+    Route::post('/register', 'API\UsersController@register');
 });
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     /*

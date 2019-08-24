@@ -29,8 +29,16 @@
                 <el-menu-item index="2-3">问答</el-menu-item>
                 <el-menu-item index="2-4">公告</el-menu-item>
             </el-submenu>
-            <el-menu-item index="3"><a href="/#/login">登录</a></el-menu-item>
-            <el-menu-item index="4">注册</el-menu-item>
+            <el-menu-item index="3">
+                <router-link :to="{ name: 'login' }">
+                    登录
+                </router-link>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <router-link :to="{ name: 'register' }">
+                    注册
+                </router-link>
+            </el-menu-item>
         </el-menu>
     </div>
 </template>
