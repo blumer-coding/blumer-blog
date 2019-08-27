@@ -40,7 +40,17 @@
                 </router-link>
             </el-menu-item>
         </el-menu>
+        <span
+                v-show="userLoadStatus == 1">
+        </span>
+        <span
+                v-show="userLoadStatus == 2">
+        </span>
+        <span
+                v-show="userLoadStatus == 3">
+        </span>
     </div>
+
 </template>
 <script>
     export default {
@@ -59,9 +69,21 @@
         computed: {
             // 从 Vuex 中获取用户加载状态
             userLoadStatus(){
+                if (this.$store.getters.getUserLoadStatus == 1){
+
+                }else if(this.$store.getters.getUserLoadStatus == 2){
+                    this.$message({
+                        message: "User loaded successfully!",
+                        type: 'success'
+                    });
+                }else{
+                    this.$message({
+                        message: "User loaded failed!",
+                        type: 'danger'
+                    });
+                }
                 return this.$store.getters.getUserLoadStatus;
             },
-
             // 从 Vuex 中获取用户信息
             user(){
                 return this.$store.getters.getUser;

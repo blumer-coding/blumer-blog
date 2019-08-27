@@ -3391,6 +3391,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3407,6 +3417,18 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     // 从 Vuex 中获取用户加载状态
     userLoadStatus: function userLoadStatus() {
+      if (this.$store.getters.getUserLoadStatus == 1) {} else if (this.$store.getters.getUserLoadStatus == 2) {
+        this.$message({
+          message: "User loaded successfully!",
+          type: 'success'
+        });
+      } else {
+        this.$message({
+          message: "User loaded failed!",
+          type: 'danger'
+        });
+      }
+
       return this.$store.getters.getUserLoadStatus;
     },
     // 从 Vuex 中获取用户信息
@@ -3526,6 +3548,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.$store.dispatch('loadBlogs');
@@ -3537,6 +3565,23 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     // 获取 blogs 加载状态
     blogsLoadStatus: function blogsLoadStatus() {
+      if (this.$store.getters.getBlogsLoadStatus == 1) {
+        this.$message({
+          message: "Loading...",
+          type: 'info'
+        });
+      } else if (this.$store.getters.getBlogsLoadStatus == 2) {
+        this.$message({
+          message: "Blogs loaded successfully!",
+          type: 'success'
+        });
+      } else {
+        this.$message({
+          message: "Blogs loaded failed!",
+          type: 'danger'
+        });
+      }
+
       return this.$store.getters.getBlogsLoadStatus;
     },
     // 获取 blogs
@@ -3673,17 +3718,104 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       pwd: '',
       pwdcfm: '',
-      email: ''
+      email: '',
+      validations: {
+        name: {
+          id_valid: true,
+          text: ''
+        },
+        pwd: {
+          id_valid: true,
+          text: ''
+        },
+        pwdcfm: {
+          id_valid: true,
+          text: ''
+        },
+        email: {
+          id_valid: true,
+          text: ''
+        }
+      }
     };
   },
   methods: {
     submitRegister: function submitRegister() {
-      this.$store.dispatch('register', {
-        name: this.name,
-        pwd: this.pwd,
-        pwdcfm: this.pwdcfm,
-        email: this.email
+      if (this.validateRegister()) {
+        this.$store.dispatch('register', {
+          name: this.name,
+          pwd: this.pwd,
+          pwdcfm: this.pwdcfm,
+          email: this.email
+        });
+      }
+    },
+    openMessage: function openMessage(title, type) {
+      this.$message({
+        message: title,
+        type: type
       });
+    },
+    validateRegister: function validateRegister() {
+      var validateRegisterForm = true;
+
+      if (this.name.trim() === '') {
+        validateRegisterForm = false;
+        this.validations.name.is_valid = false;
+        this.validations.name.text = '请输入用户名';
+        this.openMessage(this.validations.name.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (!this.name.trim().match(/(^[a-zA-Z0-9_-]{6,12}$)/)) {
+        validateRegisterForm = false;
+        this.validations.name.is_valid = false;
+        this.validations.name.text = '用户名必须 6到12位,字母,数字,下划线,减号';
+        this.openMessage(this.validations.name.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (this.pwd.trim() === '') {
+        validateRegisterForm = false;
+        this.validations.pwd.is_valid = false;
+        this.validations.pwd.text = '请输入密码';
+        this.openMessage(this.validations.pwd.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (!this.pwd.trim().match(/(^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,20}$)/)) {
+        validateRegisterForm = false;
+        this.validations.pwd.is_valid = false;
+        this.validations.pwd.text = '密码最少6位，要同时含有数字和字母';
+        this.openMessage(this.validations.pwd.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (this.pwdcfm.trim() === '') {
+        validateRegisterForm = false;
+        this.validations.pwdcfm.is_valid = false;
+        this.validations.pwdcfm.text = '请确认密码';
+        this.openMessage(this.validations.pwdcfm.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (this.pwdcfm.trim() !== this.pwd.trim()) {
+        validateRegisterForm = false;
+        this.validations.pwdcfm.is_valid = false;
+        this.validations.pwdcfm.text = '两次密码不一致,无法提交';
+        this.openMessage(this.validations.pwdcfm.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      if (this.email.trim() === '' || !this.email.match(/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)/)) {
+        validateRegisterForm = false;
+        this.validations.email.is_valid = false;
+        this.validations.email.text = '请输入有效的邮件地址';
+        this.openMessage(this.validations.email.text, 'warning');
+        return validateRegisterForm;
+      }
+
+      return validateRegisterForm;
     }
   }
 });
@@ -5680,6 +5812,115 @@ module.exports = function escape(url) {
 
     return url
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/deepmerge/dist/cjs.js":
+/*!********************************************!*\
+  !*** ./node_modules/deepmerge/dist/cjs.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isMergeableObject = function isMergeableObject(value) {
+	return isNonNullObject(value)
+		&& !isSpecial(value)
+};
+
+function isNonNullObject(value) {
+	return !!value && typeof value === 'object'
+}
+
+function isSpecial(value) {
+	var stringValue = Object.prototype.toString.call(value);
+
+	return stringValue === '[object RegExp]'
+		|| stringValue === '[object Date]'
+		|| isReactElement(value)
+}
+
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
+var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+
+function isReactElement(value) {
+	return value.$$typeof === REACT_ELEMENT_TYPE
+}
+
+function emptyTarget(val) {
+    return Array.isArray(val) ? [] : {}
+}
+
+function cloneIfNecessary(value, optionsArgument) {
+    var clone = optionsArgument && optionsArgument.clone === true;
+    return (clone && isMergeableObject(value)) ? deepmerge(emptyTarget(value), value, optionsArgument) : value
+}
+
+function defaultArrayMerge(target, source, optionsArgument) {
+    var destination = target.slice();
+    source.forEach(function(e, i) {
+        if (typeof destination[i] === 'undefined') {
+            destination[i] = cloneIfNecessary(e, optionsArgument);
+        } else if (isMergeableObject(e)) {
+            destination[i] = deepmerge(target[i], e, optionsArgument);
+        } else if (target.indexOf(e) === -1) {
+            destination.push(cloneIfNecessary(e, optionsArgument));
+        }
+    });
+    return destination
+}
+
+function mergeObject(target, source, optionsArgument) {
+    var destination = {};
+    if (isMergeableObject(target)) {
+        Object.keys(target).forEach(function(key) {
+            destination[key] = cloneIfNecessary(target[key], optionsArgument);
+        });
+    }
+    Object.keys(source).forEach(function(key) {
+        if (!isMergeableObject(source[key]) || !target[key]) {
+            destination[key] = cloneIfNecessary(source[key], optionsArgument);
+        } else {
+            destination[key] = deepmerge(target[key], source[key], optionsArgument);
+        }
+    });
+    return destination
+}
+
+function deepmerge(target, source, optionsArgument) {
+    var sourceIsArray = Array.isArray(source);
+    var targetIsArray = Array.isArray(target);
+    var options = optionsArgument || { arrayMerge: defaultArrayMerge };
+    var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+
+    if (!sourceAndTargetTypesMatch) {
+        return cloneIfNecessary(source, optionsArgument)
+    } else if (sourceIsArray) {
+        var arrayMerge = options.arrayMerge || defaultArrayMerge;
+        return arrayMerge(target, source, optionsArgument)
+    } else {
+        return mergeObject(target, source, optionsArgument)
+    }
+}
+
+deepmerge.all = function deepmergeAll(array, optionsArgument) {
+    if (!Array.isArray(array) || array.length < 2) {
+        throw new Error('first argument should be an array with at least two elements')
+    }
+
+    // we are sure there are at least 2 values, so it is safe to have no initial value
+    return array.reduce(function(prev, next) {
+        return deepmerge(prev, next, optionsArgument)
+    })
+};
+
+var deepmerge_1 = deepmerge;
+
+module.exports = deepmerge_1;
 
 
 /***/ }),
@@ -51757,7 +51998,7 @@ var _vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _deepmerge = __webpack_require__(/*! deepmerge */ "./node_modules/element-ui/node_modules/deepmerge/dist/cjs.js");
+var _deepmerge = __webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/cjs.js");
 
 var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
@@ -61051,115 +61292,6 @@ exports.default = {
     this.$options.beforeDestroy[0].call(this);
   }
 };
-
-/***/ }),
-
-/***/ "./node_modules/element-ui/node_modules/deepmerge/dist/cjs.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/element-ui/node_modules/deepmerge/dist/cjs.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isMergeableObject = function isMergeableObject(value) {
-	return isNonNullObject(value)
-		&& !isSpecial(value)
-};
-
-function isNonNullObject(value) {
-	return !!value && typeof value === 'object'
-}
-
-function isSpecial(value) {
-	var stringValue = Object.prototype.toString.call(value);
-
-	return stringValue === '[object RegExp]'
-		|| stringValue === '[object Date]'
-		|| isReactElement(value)
-}
-
-// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
-var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
-
-function isReactElement(value) {
-	return value.$$typeof === REACT_ELEMENT_TYPE
-}
-
-function emptyTarget(val) {
-    return Array.isArray(val) ? [] : {}
-}
-
-function cloneIfNecessary(value, optionsArgument) {
-    var clone = optionsArgument && optionsArgument.clone === true;
-    return (clone && isMergeableObject(value)) ? deepmerge(emptyTarget(value), value, optionsArgument) : value
-}
-
-function defaultArrayMerge(target, source, optionsArgument) {
-    var destination = target.slice();
-    source.forEach(function(e, i) {
-        if (typeof destination[i] === 'undefined') {
-            destination[i] = cloneIfNecessary(e, optionsArgument);
-        } else if (isMergeableObject(e)) {
-            destination[i] = deepmerge(target[i], e, optionsArgument);
-        } else if (target.indexOf(e) === -1) {
-            destination.push(cloneIfNecessary(e, optionsArgument));
-        }
-    });
-    return destination
-}
-
-function mergeObject(target, source, optionsArgument) {
-    var destination = {};
-    if (isMergeableObject(target)) {
-        Object.keys(target).forEach(function(key) {
-            destination[key] = cloneIfNecessary(target[key], optionsArgument);
-        });
-    }
-    Object.keys(source).forEach(function(key) {
-        if (!isMergeableObject(source[key]) || !target[key]) {
-            destination[key] = cloneIfNecessary(source[key], optionsArgument);
-        } else {
-            destination[key] = deepmerge(target[key], source[key], optionsArgument);
-        }
-    });
-    return destination
-}
-
-function deepmerge(target, source, optionsArgument) {
-    var sourceIsArray = Array.isArray(source);
-    var targetIsArray = Array.isArray(target);
-    var options = optionsArgument || { arrayMerge: defaultArrayMerge };
-    var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
-
-    if (!sourceAndTargetTypesMatch) {
-        return cloneIfNecessary(source, optionsArgument)
-    } else if (sourceIsArray) {
-        var arrayMerge = options.arrayMerge || defaultArrayMerge;
-        return arrayMerge(target, source, optionsArgument)
-    } else {
-        return mergeObject(target, source, optionsArgument)
-    }
-}
-
-deepmerge.all = function deepmergeAll(array, optionsArgument) {
-    if (!Array.isArray(array) || array.length < 2) {
-        throw new Error('first argument should be an array with at least two elements')
-    }
-
-    // we are sure there are at least 2 values, so it is safe to have no initial value
-    return array.reduce(function(prev, next) {
-        return deepmerge(prev, next, optionsArgument)
-    })
-};
-
-var deepmerge_1 = deepmerge;
-
-module.exports = deepmerge_1;
-
 
 /***/ }),
 
@@ -104718,7 +104850,40 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.userLoadStatus == 1,
+            expression: "userLoadStatus == 1"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.userLoadStatus == 2,
+            expression: "userLoadStatus == 2"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.userLoadStatus == 3,
+            expression: "userLoadStatus == 3"
+          }
+        ]
+      })
     ],
     1
   )
@@ -104872,50 +105037,38 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "home" } }, [
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.blogsLoadStatus == 1,
-            expression: "blogsLoadStatus == 1"
-          }
-        ]
-      },
-      [_vm._v("Loading")]
-    ),
+    _c("span", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.blogsLoadStatus == 1,
+          expression: "blogsLoadStatus == 1"
+        }
+      ]
+    }),
     _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.blogsLoadStatus == 2,
-            expression: "blogsLoadStatus == 2"
-          }
-        ]
-      },
-      [_vm._v("Blogs loaded successfully!")]
-    ),
+    _c("span", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.blogsLoadStatus == 2,
+          expression: "blogsLoadStatus == 2"
+        }
+      ]
+    }),
     _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.blogsLoadStatus == 3,
-            expression: "blogsLoadStatus == 3"
-          }
-        ]
-      },
-      [_vm._v("Blogs loaded failed!")]
-    )
+    _c("span", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.blogsLoadStatus == 3,
+          expression: "blogsLoadStatus == 3"
+        }
+      ]
+    })
   ])
 }
 var staticRenderFns = []
@@ -105031,7 +105184,7 @@ var render = function() {
     "div",
     {},
     [
-      _vm._v("\n    用户注册：\n    "),
+      _vm._v("\n    用户注册:\n   "),
       _c("el-input", {
         attrs: { placeholder: "请输入用户名", "suffix-icon": "el-icon-user" },
         model: {
@@ -122208,8 +122361,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/blumer/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/blumer/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/CloudStation/blumer-blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/CloudStation/blumer-blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
