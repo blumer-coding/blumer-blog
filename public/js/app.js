@@ -3720,10 +3720,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
   data: function data() {
     return {
+      // fullscreenLoading: false,
+      loader: '',
       name: '',
       pwd: '',
       pwdcfm: '',
@@ -3749,6 +3754,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    openFullScreen2: function openFullScreen2() {
+      this.loader = this.$loading({
+        lock: true,
+        text: '正在注册中...',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+    },
     submitRegister: function submitRegister() {
       if (this.validateRegister()) {
         this.$store.dispatch('register', {
@@ -3829,8 +3842,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     registerStatus: function registerStatus() {
+      if (this.$store.getters.getRegisterStatus == 1) {
+        this.openFullScreen2();
+      }
+
+      if (this.$store.getters.getRegisterStatus == 2) {
+        this.loader.close();
+        this.openMessage('注册成功！', 'success');
+        this.$router.push('login');
+      }
+
       if (this.$store.getters.getRegisterStatus == 3) {
-        this.openMessage('注册失败,请仔细核对注册信息', 'error');
+        this.loader.close();
+        this.openMessage('注册失败!可能原因:1.邮箱已被注册!', 'error');
       }
 
       return this.$store.getters.getRegisterStatus;
@@ -105202,7 +105226,7 @@ var render = function() {
     "div",
     {},
     [
-      _vm._v("\n    用户注册:\n   "),
+      _vm._v("\n        用户注册:\n       "),
       _c("el-input", {
         attrs: { placeholder: "请输入用户名", "suffix-icon": "el-icon-user" },
         model: {
@@ -121727,7 +121751,7 @@ var users = {
         commit('setRegisterStatus', 2);
       })["catch"](function (response) {
         // 状态3表示注册失败
-        commit('setRegisterStatus', 3); //alert('注册失败,请仔细核对表单信息!');
+        commit('setRegisterStatus', 3);
       });
     }
   },

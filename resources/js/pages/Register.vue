@@ -33,6 +33,9 @@
         <span
                 v-show="registerStatus == 3">
         </span>
+<!--        <span-->
+<!--                v-loading.fullscreen.lock="fullscreenLoading">>-->
+<!--        </span>-->
     </div>
 </template>
 <script>
@@ -40,6 +43,8 @@
         name: "Register",
         data() {
             return {
+                // fullscreenLoading: false,
+                loader:'',
                 name: '',
                 pwd: '',
                 pwdcfm: '',
@@ -65,6 +70,14 @@
             }
         },
         methods: {
+            openFullScreen2() {
+                this.loader = this.$loading({
+                    lock: true,
+                    text: '正在注册中...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+            },
             submitRegister: function () {
                 if(this.validateRegister()) {
                     this.$store.dispatch('register', {
@@ -137,8 +150,17 @@
         },
         computed: {
             registerStatus(){
+                if (this.$store.getters.getRegisterStatus == 1){
+                    this.openFullScreen2();
+                }
+                if (this.$store.getters.getRegisterStatus == 2){
+                   this.loader.close();
+                    this.openMessage('注册成功！','success');
+                    this.$router.push('login');
+                }
                 if (this.$store.getters.getRegisterStatus == 3){
-                    this.openMessage('注册失败,请仔细核对注册信息','error');
+                    this.loader.close();
+                    this.openMessage('注册失败!可能原因:1.邮箱已被注册!','error');
                 }
                 return this.$store.getters.getRegisterStatus;
             }

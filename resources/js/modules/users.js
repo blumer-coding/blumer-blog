@@ -39,14 +39,13 @@ export const users = {
             // 状态1表示开始注册
             commit('setRegisterStatus', 1);
             UserAPI.register(data.name, data.pwd, data.pwdcfm, data.email)
-                .then(function (response) {
+                .then(function (response){
                     // 状态2表示注册成功
                     commit('setRegisterStatus', 2);
                 })
                 .catch(function (response){
                     // 状态3表示注册失败
                     commit('setRegisterStatus', 3);
-                    //alert('注册失败,请仔细核对表单信息!');
                 });
         },
     },

@@ -28,7 +28,7 @@ class StoreRegisterRequest extends FormRequest
             'name'   => 'required|regex:/(^[a-zA-Z0-9_-]{6,12}$)/',
             'pwd'    => 'required|regex:/(^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,20}$)/',
             'pwdcfm' => 'required|regex:/(^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,20}$)/|same:pwd',
-            'email'  => 'required|email'
+            'email'  => 'required|email|unique:users'
         ];
     }
 
@@ -44,6 +44,7 @@ class StoreRegisterRequest extends FormRequest
             'pwdcfm.regex' => '无效的密码',
             'pwdcfm.same' => '两次输入的密码不一致',
             'email.email' => '无效的邮箱',
+            'email.unique' => '此邮箱已经注册'
         ];
     }
 }

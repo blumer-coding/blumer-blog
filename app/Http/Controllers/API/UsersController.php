@@ -18,7 +18,7 @@ class UsersController extends Controller
         $user = new User();
 
         $user->name         = $request->input('name');
-        $user->password     = $request->input('pwdcfm');
+        $user->password     = encrypt($request->input('pwdcfm'));
         $user->email        = $request->input('email');
 
         $user->save();
