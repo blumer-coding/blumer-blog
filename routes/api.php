@@ -12,8 +12,18 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/**###############################公有路由#################################*/
 Route::group(['prefix' => 'v1'], function(){
+    /*
+    |-------------------------------------------------------------------------------
+    | Register A New User
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1//user/add
+    | Controller:     API\UsersController@addUser
+    | Method:         POST
+    | Description:    Register a new user
+   */
+    Route::post('/register', 'API\UsersController@register');
     /*
     |-------------------------------------------------------------------------------
     | Get User
@@ -23,7 +33,7 @@ Route::group(['prefix' => 'v1'], function(){
     | Method:         GET
     | Description:    Gets all of the user in the application
     */
-    Route::get('/user/{id}', 'API\UsersController@getUser');
+    Route::get('/user', 'API\UsersController@getUser');
     /*
     |-------------------------------------------------------------------------------
     | Get All Blogs
@@ -34,7 +44,6 @@ Route::group(['prefix' => 'v1'], function(){
     | Description:    Gets all of the blogs in the application
     */
     Route::get('/blogs', 'API\BlogsController@getBlogs');
-
     /*
      |-------------------------------------------------------------------------------
      | Get An Individual Blog
@@ -45,17 +54,8 @@ Route::group(['prefix' => 'v1'], function(){
      | Description:    Gets an individual blog
     */
     Route::get('/blogs/{id}', 'API\BlogsController@getBlog');
-    /*
-        |-------------------------------------------------------------------------------
-        | Register A New User
-        |-------------------------------------------------------------------------------
-        | URL:            /api/v1//user/add
-        | Controller:     API\UsersController@addUser
-        | Method:         POST
-        | Description:    Register a new user
-       */
-    Route::post('/register', 'API\UsersController@register');
 });
+/**###############################私有路由#################################*/
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     /*
      |-------------------------------------------------------

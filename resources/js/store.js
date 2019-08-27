@@ -25,6 +25,7 @@ Vue.use( Vuex )
  */
 import { blogs } from './modules/blogs.js';
 import { users } from './modules/users.js';
+import { global } from './modules/global.js';
 /**
  * Export our data store.
  */
@@ -32,5 +33,6 @@ export default new Vuex.Store({
     modules: {
          blogs
         ,users
+        ,global
     }
 });

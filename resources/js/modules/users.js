@@ -20,12 +20,11 @@ export const users = {
      * Defines the actions used to retrieve the data.
      */
     actions: {
-        loadUser({commit}, data) {
+        loadUser({commit}) {
             commit('setUserLoadStatus', 1);
             //legacy problem used to occured in UserAPI.getUser(data.id)
             // 'data.id',not defined ,wait for you to bind data.id
-            console.log(data);
-            UserAPI.getUser(1)
+            UserAPI.getUser()
                 .then(function (response) {
                     commit('setUser', response.data);
                     commit('setUserLoadStatus', 2);

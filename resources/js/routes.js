@@ -43,11 +43,6 @@ export default new VueRouter({
                     components: Vue.component( 'Blog', require( './pages/Blog.vue'))
                 },
                 {
-                    path: 'login',
-                    name: 'login',
-                    components: Vue.component( 'Login', require( './pages/Login.vue'))
-                },
-                {
                     path: 'register',
                     name: 'register',
                     components: Vue.component( 'Register', require( './pages/Register.vue'))
