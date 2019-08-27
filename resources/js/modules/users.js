@@ -42,11 +42,11 @@ export const users = {
                 .then(function (response) {
                     // 状态2表示注册成功
                     commit('setRegisterStatus', 2);
-                    console.log(response);
                 })
-                .catch(function () {
+                .catch(function (response){
                     // 状态3表示注册失败
                     commit('setRegisterStatus', 3);
+                    //alert('注册失败,请仔细核对表单信息!');
                 });
         },
     },

@@ -24,6 +24,15 @@
         <div class="large-12 medium-12 small-12 cell">
             <a class="button" v-on:click="submitRegister()">提交</a>
         </div>
+        <span
+                v-show="registerStatus == 1">
+        </span>
+        <span
+                v-show="registerStatus == 2">
+        </span>
+        <span
+                v-show="registerStatus == 3">
+        </span>
     </div>
 </template>
 <script>
@@ -124,6 +133,14 @@
                     return validateRegisterForm;
                 }
                 return validateRegisterForm;
+            }
+        },
+        computed: {
+            registerStatus(){
+                if (this.$store.getters.getRegisterStatus == 3){
+                    this.openMessage('注册失败,请仔细核对注册信息','error');
+                }
+                return this.$store.getters.getRegisterStatus;
             }
         }
     }

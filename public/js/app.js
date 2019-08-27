@@ -3711,6 +3711,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
   data: function data() {
@@ -3816,6 +3825,15 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return validateRegisterForm;
+    }
+  },
+  computed: {
+    registerStatus: function registerStatus() {
+      if (this.$store.getters.getRegisterStatus == 3) {
+        this.openMessage('注册失败,请仔细核对注册信息', 'error');
+      }
+
+      return this.$store.getters.getRegisterStatus;
     }
   }
 });
@@ -105242,7 +105260,40 @@ var render = function() {
           },
           [_vm._v("提交")]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.registerStatus == 1,
+            expression: "registerStatus == 1"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.registerStatus == 2,
+            expression: "registerStatus == 2"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("span", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.registerStatus == 3,
+            expression: "registerStatus == 3"
+          }
+        ]
+      })
     ],
     1
   )
@@ -121674,10 +121725,9 @@ var users = {
       _api_user_js__WEBPACK_IMPORTED_MODULE_0__["default"].register(data.name, data.pwd, data.pwdcfm, data.email).then(function (response) {
         // 状态2表示注册成功
         commit('setRegisterStatus', 2);
-        console.log(response);
-      })["catch"](function () {
+      })["catch"](function (response) {
         // 状态3表示注册失败
-        commit('setRegisterStatus', 3);
+        commit('setRegisterStatus', 3); //alert('注册失败,请仔细核对表单信息!');
       });
     }
   },
