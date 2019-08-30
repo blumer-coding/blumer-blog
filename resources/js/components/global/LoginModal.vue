@@ -32,14 +32,17 @@
             }
         }
     }
+    .bl-right{
+        float:right;
+    }
 </style>
 
 <template>
     <el-dialog title="用户登录" :visible.sync="dialogFormVisible">
-        <el-container>
-        <el-row :gutter="10">
+        <el-container style="display:block">
+        <el-row>
             <el-form :model="form">
-                <el-col :xs="4" :sm="6" :md="8" :lg="24">
+                <el-col :xs="42" :sm="24" :md="24" :lg="24">
                     <el-form-item label="邮箱" :label-width="formLabelWidth">
                         <el-input
                                 placeholder="请输入邮箱"
@@ -48,7 +51,7 @@
                         </el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :xs="4" :sm="6" :md="8" :lg="24">
+                <el-col :xs="24" :sm="24" :md="24" :lg="24">
                     <el-form-item label="密码" :label-width="formLabelWidth">
                         <el-input
                                 placeholder="请输入密码"
@@ -58,39 +61,41 @@
                     </el-form-item>
                 </el-col>
             </el-form>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4" :offset="3">
+            <el-col :xs="4" :sm="4" :md="4" :lg="4" :offset="1">
                 <span>第三方登录:</span>
             </el-col>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4">
+            <el-col :xs="4" :sm="4" :md="4" :lg="4" class="bl-right">
                 <el-link href="/auth/github" v-on:click.stop="">
                     <el-image style="width: 30px; height: 30px" src="/img/github/github-login.jpg"/>
                 </el-link>
             </el-col>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4">
+            <el-col :xs="4" :sm="4" :md="4" :lg="4" class="bl-right">
                 <el-link href="/auth/weixin-web" v-on:click.stop="">
-                    <el-image style="width: 30px; height: 30px" src="/img/github/github-login.jpg"/>
+                    <el-image style="width: 30px; height: 30px" src="/img/weixin/weixin-login.jpg"/>
                 </el-link>
             </el-col>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4">
+            <el-col :xs="4" :sm="4" :md="4" :lg="4" class="bl-right">
                 <el-link href="/auth/qq" v-on:click.stop="">
-                    <el-image style="width: 30px; height: 30px" src="/img/github/github-login.jpg"/></el-link>
+                    <el-image style="width: 30px; height: 30px" src="/img/qq/qq-login.jpg"/></el-link>
             </el-col>
-            <el-col :xs="4" :sm="4" :md="4" :lg="4">
+            <el-col :xs="4" :sm="4" :md="4" :lg="4" class="bl-right">
                 <el-link href="/auth/weibo" v-on:click.stop="">
                     <el-image style="width: 30px; height: 30px" src="/img/weibo/weibo-login.jpg"/>
                 </el-link>
             </el-col>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-            </div>
+            <el-col :xs="114" :sm="11" :md="11" :lg="11" :offset="1" style="margin-top:5px;">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+            </el-col>
+            <el-col :xs="11" :sm="11" :md="11" :lg="11" style="margin-top:5px;">
+                    <el-button class="bl-right" type="primary" @click="dialogFormVisible = false">确 定</el-button>
+            </el-col>
         </el-row>
         </el-container>
+
     </el-dialog>
 </template>
 <script>
     import { EventBus } from '../../event-bus.js';
-
     export default {
         data() {
             return {
@@ -105,7 +110,7 @@
                     resource: '',
                     desc: ''
                 },
-                formLabelWidth: '120px',
+                formLabelWidth: '40px',
                 email: '',
                 pwd: '',
                 validations: {

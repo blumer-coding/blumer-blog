@@ -32,12 +32,6 @@ export default new VueRouter({
                     components: Vue.component( 'Index', require( './pages/Index.vue'))
                 },
                 {
-                    path: 'blogs',
-                    name: 'blogs',
-                    components: Vue.component( 'Blogs', require( './pages/Blogs.vue' )),
-                },
-
-                {
                     path: 'blogs/:id',
                     name: 'blog',
                     components: Vue.component( 'Blog', require( './pages/Blog.vue'))

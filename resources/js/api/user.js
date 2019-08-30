@@ -16,5 +16,9 @@ export default {
                 email: email,
             }
         );
+    },
+    logout: function () {
+        return axios.post( BLUMER_CONFIG.API_URL + '/logout',
+        );
     }
 }

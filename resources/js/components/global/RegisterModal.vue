@@ -49,11 +49,11 @@
                         </el-form-item>
                     </el-col>
                     </el-form>
+                    <el-col :xs="4" :sm="6" :md="8" :lg="9" :offset="1 ">
+                        <el-button @click="dialog = false">取 消</el-button>
+                        <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+                    </el-col>
                 </el-row>
-                <div class="demo-drawer__footer">
-                    <el-button @click="dialog = false">取 消</el-button>
-                    <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
-                </div>
             </div>
         </el-drawer>
         <span

@@ -22,10 +22,10 @@
         <h5 class="bl-logo el-menu-item "><a href="#">蓝默空间</a></h5>
         <el-menu :default-active="activeIndex" class="el-menu-blumer" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1"><a href="/">首页</a></el-menu-item>
-            <el-menu-item index="2"><a href="/">分享</a></el-menu-item>
-            <el-menu-item index="3"><a href="/">教程</a></el-menu-item>
-            <el-menu-item index="4"><a href="/">公告</a></el-menu-item>
-            <el-menu-item index="5"><a href="/">问答</a></el-menu-item>
+            <el-menu-item index="2"><a href="/">编程</a></el-menu-item>
+            <el-menu-item index="3"><a href="/">运维</a></el-menu-item>
+            <el-menu-item index="4"><a href="/">算法</a></el-menu-item>
+            <el-menu-item index="5"><a href="/">分享</a></el-menu-item>
             <el-submenu index="6" v-if="user != '' && userLoadStatus === 2" v-show="userLoadStatus === 2">
                 <template slot="title">
                     <el-image style="width: 40px; height: 40px;border:3px solid #409eff;border-radius:20px" :src="user.avatar">
@@ -73,11 +73,11 @@
                 EventBus.$emit('prompt-signin');
             },
             logout() {
-                this.$store.dispatch('logoutUser');
+                //this.$store.dispatch('logoutUser');
                 window.location = '/logout';
             },
             handleSelect(key, keyPath) {
-                console.log(key, keyPath);
+                // console.log(key, keyPath);
             },
         },
         components: {

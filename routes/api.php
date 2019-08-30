@@ -43,6 +43,7 @@ Route::group(['prefix' => 'v1'], function(){
     | Method:         GET
     | Description:    Gets all of the blogs in the application
     */
+
     Route::get('/blogs', 'API\BlogsController@getBlogs');
     /*
      |-------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
      | Description:    Adds a new blog to the application
     */
     Route::post('/blogs', 'API\BlogsController@postNewBlog');
+    Route::post('/logout', 'API\UsersController@logout');
 });
 
 

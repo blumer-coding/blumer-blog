@@ -9,7 +9,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
-    public function getUser(){
+    public function getUser()
+    {
         return Auth::guard('api')->user();
     }
 
@@ -17,12 +18,17 @@ class UsersController extends Controller
     {
         $user = new User();
 
-        $user->name         = $request->input('name');
-        $user->password     = encrypt($request->input('pwdcfm'));
-        $user->email        = $request->input('email');
+        $user->name = $request->input('name');
+        $user->password = encrypt($request->input('pwdcfm'));
+        $user->email = $request->input('email');
 
         $user->save();
 
-        return response()->json($user,201);
+        return response()->json($user, 201);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
     }
 }

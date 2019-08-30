@@ -47,6 +47,14 @@ export const users = {
                     commit('setRegisterStatus', 3);
                 });
         },
+        logoutUser({dispatch}) {
+            UserAPI.logout()
+                .then(function (response) {
+                    dispatch('loadUser');
+            }).catch(function (response) {
+                    console.log(response);
+            });
+        }
     },
     /**
      * Defines the mutations used

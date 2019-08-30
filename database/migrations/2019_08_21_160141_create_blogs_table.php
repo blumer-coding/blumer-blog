@@ -17,6 +17,7 @@ class CreateBlogsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->index();
             $table->string('slug')->unique();
+            $table->string('tag')->comment('标签');
             $table->string('title')->comment('标题');
             $table->text('content');
             $table->softDeletes();

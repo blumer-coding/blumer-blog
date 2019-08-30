@@ -8,18 +8,33 @@
         text-align: center;
         line-height: 160px;
     }
+     .app{
+         font-family: "microsoft yahei";
+     }
+    #content{
+        background-color: #f9f9f9;
+        padding: 30px 0;
+    }
+    .navBarWrap {
+        position:fixed;
+        top:0;
+        z-index:999;
+        width: 100%;
+    }
 </style>
 
 <template>
-    <div id="app-layout">
+    <div id="app-layout" class="app">
         <el-container>
             <el-header>
                 <navigation></navigation>
             </el-header>
-            <el-main>Main</el-main>
-            <el-footer>Footer</el-footer>
+            <el-row type="flex" justify="center" id="content">
+                <el-col :xs="20" :md="20" :style="{'minHeight':minHeight+'px'}">
+                    <router-view></router-view>
+                </el-col>
+            </el-row>
         </el-container>
-        <router-view></router-view>
         <login-modal></login-modal>
     </div>
 </template>
@@ -31,7 +46,9 @@
         data() {
             return {
                 activeIndex: '1',
-                activeIndex2: '1'
+                activeIndex2: '1',
+                minHeight: 0,
+                navBarFixed: false
             };
         },
         methods: {
@@ -41,7 +58,7 @@
         },
         components: {
             Navigation,
-            LoginModal
+            LoginModal,
         },
         created(){
             this.$store.dispatch( 'loadUser' );
